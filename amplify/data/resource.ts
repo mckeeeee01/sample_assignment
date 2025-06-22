@@ -14,6 +14,14 @@ const schema = a.schema({
     })
     .authorization((allow) => [allow.publicApiKey()]),
 
+    subtask: a.model({
+      id: a.id().required(), // サブタスクのID
+      todoId: a.id().required(), // 親タスクのID
+      content: a.string(),
+      deadline: a.datetime(),
+      isDone: a.boolean(),
+    })
+    .authorization((allow) => [allow.publicApiKey()]),
 });
 
 export type Schema = ClientSchema<typeof schema>;
